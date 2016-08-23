@@ -116,12 +116,12 @@ class WordCloud_WidgetShortcodeControl extends WidgetShortcodeControl
 		
 		$model = WordCloud_Model::get_instance();
 		
-		$cloud = $model->get_cloud( $name );
+		$cloud = $model->get_cloud_settings( $name );
 		if( ! $cloud ) {
 			return;
 		}
 		
-		$cache = $model->get_cache( $name, true );
+		$cache = $model->get_cloud_cache( $name, true );
 		if( ! $cache ) {
 			return;
 		}
