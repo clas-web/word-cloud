@@ -191,7 +191,7 @@ function d3_word_cloud( div )
 // Process each D3 Word Cloud controls.
 window.onload = function()
 {
-	var divs = d3.selectAll('.d3-word-cloud-control');
+	var divs = d3.selectAll('.word-cloud-control');
 	var clouds = [];
 	
 	for( var i = 0; i < divs[0].length; i++ )
