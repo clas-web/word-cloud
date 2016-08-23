@@ -63,7 +63,7 @@ function d3_word_cloud( div )
 
 		var hide_debug = unescape( div.getElementsByClassName('hide-debug')[0].value );
 		var div_style = 'text-align:left;';
-		if( hide_debug == 'true' )
+		if( hide_debug == 'yes' )
 			div_style += 'display:none;';
 			
 		d3.select( self.id )
