@@ -11,8 +11,8 @@
  * Setup the Word Cloud control.
  * @param  DivElement  div  The Word Cloud control container.
  */
-function d3_word_cloud( div )
-{
+
+function display_word_cloud( div ) {
 	var self = {};
 	
 	self.id = '#'+div.id;
@@ -187,17 +187,16 @@ function d3_word_cloud( div )
 	self.process_cloud();
 }
 
-
 // Process each D3 Word Cloud controls.
-window.onload = function()
+jQuery(document).ready( function($)
 {
 	var divs = d3.selectAll('.word-cloud-control');
 	var clouds = [];
 	
 	for( var i = 0; i < divs[0].length; i++ )
 	{
-		var cloud = new d3_word_cloud( divs[0][i] );
+		var cloud = new display_word_cloud( divs[0][i] );
 		clouds.push( cloud );
 	}
-}
+});
 
