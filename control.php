@@ -50,41 +50,41 @@ class WordCloud_WidgetShortcodeControl extends WidgetShortcodeControl
 	 */
 	public function print_widget_form( $options )
 	{
-		$options = $this->merge_options( $options );
-		extract( $options );
-		
-		$model = WordCloud_Model::get_instance();
-		$clouds = $model->get_all_clouds( true );
-		
-		?>
-		<p>
-		<label for="<?php echo $this->get_field_id( 'name' ); ?>">
-			<?php _e( 'Cloud Name:' ); ?>
-		</label> 
-		<br/>
-		<?php
-		
-		if( empty( $clouds ) ):
-			echo 'No clouds found.';
-		else:
-			?>
-			<select name="<?php echo $this->get_field_name( 'name' ); ?>">
-			<?php
-			foreach( $clouds as $cloud ):
-				?>
-				<option value="<?php echo esc_attr( $cloud['name'] ); ?>" <?php selected( $cloud['name'], $name ); ?>>
-					<?php echo $cloud['name']; ?>
-				</option>
-				<?php
-			endforeach;
-			?>
-			</select>
-			<?php
-		endif;
-		
-		?>
-		</p>
-		<?php
+// 		$options = $this->merge_options( $options );
+// 		extract( $options );
+// 		
+// 		$model = WordCloud_Model::get_instance();
+// 		$clouds = $model->get_all_clouds( true );
+// 		
+// 		?>
+// 		<p>
+// 		<label for="<?php echo $this->get_field_id( 'name' ); ?>">
+// 			<?php _e( 'Cloud Name:' ); ?>
+// 		</label> 
+// 		<br/>
+// 		<?php
+// 		
+// 		if( empty( $clouds ) ):
+// 			echo 'No clouds found.';
+// 		else:
+// 			?>
+// 			<select name="<?php echo $this->get_field_name( 'name' ); ?>">
+// 			<?php
+// 			foreach( $clouds as $cloud ):
+// 				?>
+// 				<option value="<?php echo esc_attr( $cloud['name'] ); ?>" <?php selected( $cloud['name'], $name ); ?>>
+// 					<?php echo $cloud['name']; ?>
+// 				</option>
+// 				<?php
+// 			endforeach;
+// 			?>
+// 			</select>
+// 			<?php
+// 		endif;
+// 		
+// 		?>
+// 		</p>
+// 		<?php
 	}
 	
 	
