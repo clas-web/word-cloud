@@ -3,9 +3,10 @@
 Plugin Name: Word Cloud v2 (Cached Version)
 Plugin URI: https://github.com/atrus1701/word-cloud-v2-cached-version
 Description: Displays a word cloud using cached terms.  This is a fork of the word-cloud.
-Version: 2.0.1
+Version: 2.1.1
 Author: Crystal Barton
 Author URI: https://www.linkedin.com/in/crystalbarton
+GitHub Plugin URI: https://github.com/clas-web/word-cloud
 */
 
 
