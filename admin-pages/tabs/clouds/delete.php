@@ -71,8 +71,7 @@ class WordCloud_CloudsDeleteTabAdminPage extends APL_TabAdminPage
 		wp_redirect( 
 			$this->get_page_url( 
 				array( 
-					'tab' => 'delete', 
-					'name' => $name, 
+					'tab' => 'list', 
 				) 
 			) 
 		);
@@ -99,7 +98,7 @@ class WordCloud_CloudsDeleteTabAdminPage extends APL_TabAdminPage
 		
 		if( ! $this->model->is_existing_cloud_name( $_REQUEST['name'] ) ):
 			// Cloud does not exist.
-			?><p class="no-cloud">The cloud does not exists.</p><?php
+			?><p class="no-cloud">The cloud does not exist.</p><?php
 			return;
 		else:
 			// Display the confirm deletion form.
@@ -109,7 +108,7 @@ class WordCloud_CloudsDeleteTabAdminPage extends APL_TabAdminPage
 			<input type="hidden" name="cloud_settings[name]" value="<?php echo esc_attr( $_REQUEST['name'] ); ?>" />
 			<p>Are you sure you want to delete '<?php echo $_REQUEST['name']; ?>'?</p>
 			<input type="submit" name="confirm" value="Yes" />
-			<input type="submit" name="confirm" value="NO" />
+			<input type="submit" name="confirm" value="No" />
 		
 			<?php 
 			$this->form_end();

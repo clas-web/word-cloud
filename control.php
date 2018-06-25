@@ -1,6 +1,5 @@
 <?php
 
-require_once( __DIR__.'/widget-shortcode-control.php' );
 require_once( WORD_CLOUD_PLUGIN_PATH . '/classes/model.php' );
 
 
@@ -50,41 +49,42 @@ class WordCloud_WidgetShortcodeControl extends WidgetShortcodeControl
 	 */
 	public function print_widget_form( $options )
 	{
-// 		$options = $this->merge_options( $options );
-// 		extract( $options );
-// 		
-// 		$model = WordCloud_Model::get_instance();
-// 		$clouds = $model->get_all_clouds( true );
-// 		
-// 		?>
-// 		<p>
-// 		<label for="<?php echo $this->get_field_id( 'name' ); ?>">
-// 			<?php _e( 'Cloud Name:' ); ?>
-// 		</label> 
-// 		<br/>
-// 		<?php
-// 		
-// 		if( empty( $clouds ) ):
-// 			echo 'No clouds found.';
-// 		else:
-// 			?>
-// 			<select name="<?php echo $this->get_field_name( 'name' ); ?>">
-// 			<?php
-// 			foreach( $clouds as $cloud ):
-// 				?>
-// 				<option value="<?php echo esc_attr( $cloud['name'] ); ?>" <?php selected( $cloud['name'], $name ); ?>>
-// 					<?php echo $cloud['name']; ?>
-// 				</option>
-// 				<?php
-// 			endforeach;
-// 			?>
-// 			</select>
-// 			<?php
-// 		endif;
-// 		
-// 		?>
-// 		</p>
-// 		<?php
+		
+		$options = $this->merge_options( $options );
+		if($options) $selected_cloud = $options[0];
+		else $selected_cloud = '';
+		$model = WordCloud_Model::get_instance();
+		$clouds = $model->get_all_clouds( true );
+		?>
+		<p>
+		<label for="<?php echo $this->get_field_id('1'); ?>">
+			<?php _e( 'Cloud Name:' ); ?>
+		</label> 
+		<br/>
+		<?php
+		
+		if( empty( $clouds ) ):
+			echo 'No clouds found. Create one from the admin menu first.';
+		else:
+			?>
+			<select name="<?php echo $this->get_field_name('1'); ?>">
+			<option value=""><i>Select a cloud</i></option>
+			<?php
+			foreach( $clouds as $cloud ):
+				?>
+				<option value="<?php echo esc_attr( $cloud['name'] ); ?>" <?php selected( $cloud['name'], $selected_cloud ); ?>>
+					<?php echo $cloud['name']; ?>
+				</option>
+				<?php
+			endforeach;
+			?>
+			</select>
+			<?php
+		endif;
+		
+		?>
+		</p>
+		<?php
 	}
 	
 	
@@ -95,7 +95,6 @@ class WordCloud_WidgetShortcodeControl extends WidgetShortcodeControl
 	public function get_default_options()
 	{
 		$defaults = array();
-		$default['name'] = array();
 		return $defaults;
 	}
 	
@@ -108,20 +107,14 @@ class WordCloud_WidgetShortcodeControl extends WidgetShortcodeControl
 	public function print_control( $options, $args = null )
 	{
 		$options = $this->merge_options( $options );
-		extract( $options );
-		
-		if( empty( $name ) ) {
-			return;
-		}
-		
 		$model = WordCloud_Model::get_instance();
 		
-		$cloud = $model->get_cloud_settings( $name );
+		$cloud = $model->get_cloud_settings( $options[0] );
 		if( ! $cloud ) {
 			return;
 		}
 		
-		$cache = $model->get_cloud_cache( $name, true );
+		$cache = $model->get_cloud_cache( $options[0], true );
 		if( ! $cache ) {
 			return;
 		}
@@ -138,29 +131,7 @@ class WordCloud_WidgetShortcodeControl extends WidgetShortcodeControl
 			}
 			
 			$term_object = get_term_by( 'term_taxonomy_id', $term_id );
-// 			if( function_exists( 'mt_get_url' ) )
-// 			{
-// 				$type = MTType::FilteredArchive;
-// 				$post_types = $cache['settings']['post_types'];
-// 				$taxonomies = array_merge( 
-// 					$cache['settings']['taxonomies'], 
-// 					array( $cache['settings']['filterby_taxonomy'] )
-// 				);
-// 				$tax_terms = array(
-// 					$cache['settings']['filterby_taxonomy'] => 
-// 						explode( ';', $cache['settings']['filterby_terms'] ),
-// 				);
-// 				if( ! array_key_exists( $term_object->taxonomy ) ) {
-// 					$tax_terms[ $term_object->taxonomy ] = array();
-// 				}
-// 				$tax_terms[ $term_object->taxonomy ][] = $term_object->slug;
-// 				
-// 				$url = mt_get_url( $type, $post_types, $taxonomies, 0, $tax_terms );
-// 			}
-// 			else
-// 			{
 				$url = get_term_link( $term_id );
-// 			}
 			
 			$terms[] = array(
 				'name' => $term_object->name,

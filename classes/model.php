@@ -281,6 +281,27 @@ class WordCloud_Model
 		return true;
 	}
 	
+		/**
+	 * 
+	 */
+	public function get_all_clouds( $process = false )
+	{
+		$clouds = get_option( WORD_CLOUD_LIST, array() );
+		
+		if( ! $clouds || ! is_array( $clouds ) ) {
+			return array();
+		}
+		
+		if( $process ) {
+			foreach( $clouds as &$cloud ) {
+				$cloud = $this->get_cloud_settings( $cloud );
+			}
+		}
+		
+		return $clouds;
+	}
+	
+	
 	
 	/**
 	 * Get a list of cloud names.

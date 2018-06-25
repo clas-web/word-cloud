@@ -78,7 +78,8 @@ class WordCloud_CloudsAddTabAdminPage extends APL_TabAdminPage
 		}
 		
 		$this->page->add_notice( 'Cloud added.', true );
-		
+		$this->model->cache_cloud($cloud['name']);
+
 		wp_redirect( 
 			$this->get_page_url( 
 				array( 

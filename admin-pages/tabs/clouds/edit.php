@@ -77,6 +77,7 @@ class WordCloud_CloudsEditTabAdminPage extends APL_TabAdminPage
 		else {
 			$this->add_notice( 'Cloud updated.', true );
 			$name = $_REQUEST['cloud_settings']['name'];
+			$this->model->cache_cloud($name);
 		}
 		
 		wp_redirect( 
