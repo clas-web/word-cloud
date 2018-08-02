@@ -109,19 +109,26 @@ class WordCloud_WidgetShortcodeControl extends WidgetShortcodeControl
 		$options = $this->merge_options( $options );
 		$model = WordCloud_Model::get_instance();
 		
-		$cloud = $model->get_cloud_settings( $options[0] );
+		if (isset($options[name])) {
+			$cloud_name = $options[name];
+		} else {
+			$cloud_name = $options[0];
+		}
+		
+		$cloud = $model->get_cloud_settings( $cloud_name );
+
 		if( ! $cloud ) {
 			return;
 		}
 		
-		$cache = $model->get_cloud_cache( $options[0], true );
+		$cache = $model->get_cloud_cache( $cloud_name, true );
 		if( ! $cache ) {
 			return;
 		}
 		
 		extract( $cloud );
 		
-		
+
 		$terms = array();
 		$count = 1;
 		foreach( $cache['terms'] as $term_id => $term_count )
