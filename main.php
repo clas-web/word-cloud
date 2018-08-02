@@ -3,8 +3,8 @@
 Plugin Name: Word Cloud v2
 Plugin URI: https://github.com/atrus1701/word-cloud-v2-cached-version
 Description: Displays a word cloud using cached terms.  This is a fork of the word-cloud.
-Version: 2.2.0
-Author: Aaron Forsyth, Crystal Barton
+Version: 2.2.1
+Author: Aaron Forsyth, Crystal Barton, Alex Chapin
 Author URI: https://pages.uncc.edu/oat
 GitHub Plugin URI: https://github.com/clas-web/word-cloud
 */
