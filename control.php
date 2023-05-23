@@ -109,8 +109,8 @@ class WordCloud_WidgetShortcodeControl extends WidgetShortcodeControl
 		$options = $this->merge_options( $options );
 		$model = WordCloud_Model::get_instance();
 		
-		if (isset($options[name])) {
-			$cloud_name = $options[name];
+		if (isset($options['name'])) {
+			$cloud_name = $options['name'];
 		} else {
 			$cloud_name = $options[0];
 		}
